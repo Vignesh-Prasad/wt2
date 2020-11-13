@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+  background-image: url('img.jpeg');
+}
+body {
+  color: white;
+  background-color:white;
+}
+
+h1 {
+  color: black;
+}
+
+h4 {
+  color : rgb(4, 31, 37);
+}
+</style>
+</head>
+<body>
+<div>
+<h1> DOM </h1>
+<h4>Name:</h4><p id="first"></p>
+<h4>Age:</h4><p id="demo1"></p>
+<h4>Gender:</h4><p id="demo2"></p>
+
+<h4>category:</h4> <p id="second">category:</p>
+<h4>Name of the passenger "info"</h4> <p id="third"></p>
+
+<button type="button">Available Categories</button><p id = "fourth"></p>
+</div>
+<script>
+    var text, parser, xmlDoc;
+    var texts = "";
+    text="<details><info>"+
+        "<name>Ram</name>"+
+        "<age>20</age>"+
+        "<gender>male</gender>"+
+        "<address>xxx</address>"+
+        "<phone>9796857687</phone>"+
+        "<aadhar>xxxx yyyy zzzz</aadhar>"+
+        "<category>AC</category>"+
+    "</info>"+
+    "<info>"+
+        "<name>Akash</name>"+
+        "<age>20</age>"+
+        "<gender>male</gender>"+
+        "<address>xxx</address>"+
+        "<phone>9796854587</phone>"+
+        "<aadhar>xxxx yyyy zzzz</aadhar>"+
+        "<category>NonAC</category>"+
+    "</info>"+
+    "<info>"+
+        "<name>Gokul</name>"+
+        "<age>19</age>"+
+        "<gender>male</gender>"+
+        "<address>xxx</address>"+
+        "<phone>9996857687</phone>"+
+        "<aadhar>xxxx yyyy zzzz</aadhar>"+
+        "<category>General</category>"+
+    "</info></details>";
+
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(text,"text/xml");
+
+        document.getElementById("first").innerHTML =
+        xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+        document.getElementById("demo1").innerHTML =
+        xmlDoc.getElementsByTagName("age")[0].childNodes[0].nodeValue;
+        document.getElementById("demo2").innerHTML =
+        xmlDoc.getElementsByTagName("gender")[0].childNodes[0].nodeValue;
+        document.getElementById("second").innerHTML =
+        xmlDoc.getElementsByTagName("category")[0].childNodes[0].nodeValue;
+        document.getElementById("third").innerHTML =
+        xmlDoc.getElementsByTagName("info")[0].childNodes[0].nodeName;
+        texts = texts + xmlDoc.getElementsByTagName("category")[0].childNodes[0].nodeValue + "<br>" +
+        xmlDoc.getElementsByTagName("category")[1].childNodes[0].nodeValue + "<br>" +
+        xmlDoc.getElementsByTagName("category")[2].childNodes[0].nodeValue + "<br>";
+        document.getElementById("fourth").innerHTML = texts;
+
+
+
+
+
+
+</script>
+</body>
+</html>
